@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="script.js">
+        function getWeather()
+        {
+            var city = document.getElementById("city").value;
+            var url = "https://weatherapi-com.p.rapidapi.com/current.json?q=" + city +;
+            $.getJSON(url, function(data)
+            {
+                var weather = data.current.condition.text;
+                var temp = data.current.temp_c;
+                var wind = data.current.wind_kph;
+                var humidity = data.current.humidity;
+                var icon = data.current.condition.icon;
+                var iconUrl = "https:" + icon;
+                var weatherIcon = "<img src='" + iconUrl + "'>";
+                document.getElementById("weather").innerHTML = weatherIcon + " " + weather + " " + temp + "&deg;C " + " Wind: " + wind + "km/h " + " Humidity: " + humidity + "%";
+            });
+
+    </script>
+
+
+    <input type="text" id="city">
+    <button id="search">Search</button>
+
+    <script>
+
+        <form id="Weather" form action="https://weatherapi-com.p.rapidapi.com/current.json?q=" method="post" encType="multipart/form-data" onSubmit="getWeather()"></script>
+    </script>
+
+    <div id="weather">
+    </div>
+
+
+</head>
+<body>
+
+<h1> Weather Application</h1>
+<div id="weather"></div>
+
+
+</body>
+</html>
